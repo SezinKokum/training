@@ -61,4 +61,61 @@ For example, given the list
         }
         return outputList;
     }
+
+    public void level1DepthFirstPreOrder(String rootNodeId) {
+     if (rootNodeId.isEmpty()){
+         return;
+     }
+     /* first print data of node */
+     api.activateNode(rootNodeId);
+     //System.out.print(rootNodeId);
+
+     /* then recur on left subtree */
+     //System.out.println(api.getChildren(rootNodeId).get(0));
+     level1DepthFirstPreOrder(api.getChildren(rootNodeId).get(0));
+     
+     /* now recur on right subtree */
+     level1DepthFirstPreOrder(api.getChildren(rootNodeId).get(1));
+ }
+
+ /**
+  * Carry out depth first in-order traversal (blue circles in the tree)
+  */
+ public void level2DepthFirstInOrder(String rootNodeId) {
+     if (rootNodeId.isEmpty()){
+         return;
+     }
+     
+     /*recur on left subtree */
+     //System.out.println(api.getChildren(rootNodeId).get(0));
+     level2DepthFirstInOrder(api.getChildren(rootNodeId).get(0));
+     
+     /*print data of node */
+     api.activateNode(rootNodeId);
+     //System.out.print(rootNodeId);
+     
+     /* now recur on right subtree */
+     level2DepthFirstInOrder(api.getChildren(rootNodeId).get(1));
+ }
+
+ /**
+  * Carry out depth first post-order traversal (red circles in the tree)
+  */
+ public void level3DepthFirstPostOrder(String rootNodeId) {
+     if (rootNodeId.isEmpty()){
+         return;
+     }
+     
+     /*recur on left subtree */
+     //System.out.println(api.getChildren(rootNodeId).get(0));
+     level3DepthFirstPostOrder(api.getChildren(rootNodeId).get(0));
+     
+     /* now recur on right subtree */
+     level3DepthFirstPostOrder(api.getChildren(rootNodeId).get(1));
+     
+     /*print data of node */
+     api.activateNode(rootNodeId);
+     //System.out.print(rootNodeId);
+ 
+ }
 }

@@ -118,4 +118,44 @@ For example, given the list
      //System.out.print(rootNodeId);
  
  }
+
+   /**
+     * Carry out breadth first traversal
+     */
+    public void level4BreadthFirst(String rootNodeId) {
+        
+        int h = height(rootNodeId);
+        int i;
+        for (i = 1; i <= h; i++)
+            printCurrentLevel(rootNodeId, i);
+      
+    }
+    
+    int height(String rootNodeId)
+    {
+        if (rootNodeId.isEmpty())
+            return 0;
+        else {
+            /* compute  height of each subtree */
+            int lheight = height(api.getChildren(rootNodeId).get(0));
+            int rheight = height(api.getChildren(rootNodeId).get(1));
+ 
+            /* use the larger one */
+            if (lheight > rheight)
+                return (lheight + 1);
+            else
+                return (rheight + 1);
+        }
+    }
+
+    public void printCurrentLevel(String rootNodeId, int level){
+        if (rootNodeId.isEmpty())
+            return;
+        if (level == 1)
+            api.activateNode(rootNodeId);
+        else if (level > 1) {
+            printCurrentLevel(api.getChildren(rootNodeId).get(0), level - 1);
+            printCurrentLevel(api.getChildren(rootNodeId).get(1), level - 1);
+        }
+    }
 }
